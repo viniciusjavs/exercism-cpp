@@ -1,8 +1,14 @@
 #if !defined(HAMMING_H)
 #define HAMMING_H
 
-namespace hamming {
+#include <stdexcept>
+#include <string>
 
-}  // namespace hamming
+namespace hamming {
+using std::string;
+
+int compute(string const &, string const &);
+
+} // namespace hamming
 
 #endif // HAMMING_H
