@@ -2,12 +2,7 @@
 
 namespace leap {
 bool is_leap_year(int year) {
-  if (!(year % 400))
-    return true;
-  if (!(year % 100))
-    return false;
-  if (!(year % 4))
-    return true;
-  return false;
+  return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0);
 }
+
 } // namespace leap
