@@ -5,8 +5,8 @@ namespace grade_school {
 roster_t const &school::roster() const { return roster_; }
 void school::add(string name, int grade) {
   auto &students = roster_[grade];
-  students.push_back(name);
-  std::sort(begin(students), end(students));
+  auto pos = std::upper_bound(cbegin(students), cend(students), name);
+  students.insert(pos, name);
 }
 vector<string> school::grade(int grade) const {
   return roster_.count(grade) == 0 ? vector<string>{} : roster_.at(grade);
