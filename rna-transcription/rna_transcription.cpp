@@ -9,11 +9,10 @@ std::unordered_map<char, char> const dna_to_rna{
 
 char to_rna(char dna) { return dna_to_rna.at(dna); }
 
-string to_rna(string dna) {
-  string rna;
-  std::transform(cbegin(dna), cend(dna), std::back_inserter(rna),
+string to_rna(string strand) {
+  std::transform(cbegin(strand), cend(strand), std::begin(strand),
                  static_cast<char (*)(char)>(to_rna));
-  return rna;
+  return strand;
 }
 
 } // namespace rna_transcription
