@@ -30,6 +30,9 @@ std::map<unsigned long, string> const map{
     {100, "hundred"},     {1000, "thousand"},
     {1000000, "million"}, {1'000'000'000, "billion"}};
 
+template <typename T, typename U>
+inline string n_hundreds(T number, U power_of_ten);
+
 template <typename T> string in_english(T number) {
   if (std::is_signed<T>::value)
     throw std::domain_error{"Signed Number."};
@@ -37,19 +40,13 @@ template <typename T> string in_english(T number) {
     throw std::domain_error{"Number out of range."};
 
   if (number >= 1'000'000'000) {
-    return in_english(number / 1'000'000'000) + ' ' + map.at(1'000'000'000) +
-           (number % 1'000'000'000 != 0
-                ? ' ' + in_english(number % 1'000'000'000)
-                : "");
+    return n_hundreds(number, 1'000'000'000);
   } else if (number >= 1000000) {
-    return in_english(number / 1000000) + ' ' + map.at(1000000) +
-           (number % 1000000 != 0 ? ' ' + in_english(number % 1000000) : "");
+    return n_hundreds(number, 1000000);
   } else if (number >= 1000) {
-    return in_english(number / 1000) + ' ' + map.at(1000) +
-           (number % 1000 != 0 ? ' ' + in_english(number % 1000) : "");
+    return n_hundreds(number, 1000);
   } else if (number >= 100) {
-    return map.at(number / 100) + ' ' + map.at(100) +
-           (number % 100 != 0 ? ' ' + in_english(number % 100) : "");
+    return n_hundreds(number, 100);
   } else if (number > 20) {
     return map.at((number / 10) * 10) + '-' + map.at(number % 10);
   } else {
@@ -57,6 +54,12 @@ template <typename T> string in_english(T number) {
   }
 }
 
+template <typename T, typename U>
+inline string n_hundreds(T number, U power_of_ten) {
+  return in_english(number / power_of_ten) + ' ' + map.at(power_of_ten) +
+         (number % power_of_ten != 0 ? ' ' + in_english(number % power_of_ten)
+                                     : "");
+}
 } // namespace say
 
 #endif // SAY_H
