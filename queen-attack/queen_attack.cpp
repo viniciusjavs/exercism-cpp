@@ -9,19 +9,18 @@ chess_board::chess_board(pair_t white, pair_t black)
 }
 
 chess_board::operator string() const {
-  string board;
-  board.reserve((size * 2) * size);
-  for (int row : iota(0, size)) {
-    for (int column : iota(0, size))
-      if (auto pair = std::make_pair(row, column); pair == white_)
-        board.append("W ");
-      else if (pair == black_)
-        board.append("B ");
-      else
-        board.append("_ ");
-    board.pop_back();
-    board.push_back('\n');
-  }
+  string board{"_ _ _ _ _ _ _ _\n"
+               "_ _ _ _ _ _ _ _\n"
+               "_ _ _ _ _ _ _ _\n"
+               "_ _ _ _ _ _ _ _\n"
+               "_ _ _ _ _ _ _ _\n"
+               "_ _ _ _ _ _ _ _\n"
+               "_ _ _ _ _ _ _ _\n"
+               "_ _ _ _ _ _ _ _\n"};
+
+  board[white_.first * (size * 2) + white_.second * 2] = 'W';
+  board[black_.first * (size * 2) + black_.second * 2] = 'B';
+
   return board;
 }
 

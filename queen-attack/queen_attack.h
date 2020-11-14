@@ -2,7 +2,6 @@
 #define QUEEN_ATTACK_H
 
 #include <cmath>
-#include <ranges>
 #include <stdexcept>
 #include <utility>
 
@@ -10,7 +9,6 @@ namespace queen_attack {
 
 using pair_t = std::pair<int, int>;
 using std::string;
-using namespace std::views;
 
 class chess_board {
   static constexpr auto size = 8;
