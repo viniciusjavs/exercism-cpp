@@ -1,14 +1,11 @@
 #include "gigasecond.h"
 #include "test/catch.hpp"
-#include "boost/date_time/posix_time/posix_time.hpp"
 
 // This problem requires you to install and use the boost date_time library.
 // CMake will try to find and configure it for you if it is installed on your
 // system.
 // See <http://www.boost.org/doc/libs/1_58_0/doc/html/date_time/posix_time.html>
 // for documentation on boost::posix_time
-
-using namespace boost::posix_time;
 
 TEST_CASE("test_1")
 {
@@ -18,7 +15,6 @@ TEST_CASE("test_1")
     REQUIRE(expected == actual);
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("test_2")
 {
     const auto actual = gigasecond::advance(time_from_string("1977-06-13 00:00:00"));
@@ -50,4 +46,3 @@ TEST_CASE("test_5")
     const ptime expected(time_from_string("2046-10-03 01:46:39"));
     REQUIRE(expected == actual);
 }
-#endif
