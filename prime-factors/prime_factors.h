@@ -5,7 +5,9 @@
 
 namespace prime_factors {
 
-std::vector<int> of(int number);
+using std::vector;
+
+vector<int> of(int number);
 
 } // namespace prime_factors
 
