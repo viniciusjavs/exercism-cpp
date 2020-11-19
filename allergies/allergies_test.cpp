@@ -13,7 +13,6 @@ TEST_CASE("no_allergies_means_not_allergic")
     REQUIRE(false == score.is_allergic_to("strawberries"));
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
 TEST_CASE("allergic_to_eggs")
 {
     allergies::allergy_test score(1);
@@ -144,4 +143,3 @@ TEST_CASE("ignore_non_allergen_score_parts")
 
     REQUIRE(non_allergen == score.get_allergies());
 }
-#endif
